@@ -1,0 +1,16 @@
+"Backend"
+cd C:\ServicosAO\MGo-backend
+npm run dev
+
+
+"Frontend"
+cd C:\ServicosAO\mobile
+npx expo start
+
+"Servidor Local"
+
+const API_URL = 'http://192.168.8.228:3000/api';
+
+"Servidor Railway"
+
+const API_URL = 'https://mgo-services-production-b745.up.railway.app/api';
