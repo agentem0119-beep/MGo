@@ -1,4 +1,4 @@
-const API_URL = 'http://192.168.8.228:3000/api';
+const API_URL = 'https://mgo-services-production-b745.up.railway.app/api';
 
 export const api = {
   get: async (endpoint, token = null) => {
