@@ -18,21 +18,20 @@ const listarPorUtilizador = async (req, res) => {
     return res.status(500).json({ erro: 'Erro ao buscar marcações' });
   }
 };
-
 const criarMarcacao = async (req, res) => {
   const { id } = req.utilizador;
-  const { posto_id, data_marcacao, hora_marcacao } = req.body;
+  const { posto_id } = req.body;
 
-  if (!posto_id || !data_marcacao || !hora_marcacao) {
-    return res.status(400).json({ erro: 'Todos os campos são obrigatórios' });
+  if (!posto_id) {
+    return res.status(400).json({ erro: 'Posto é obrigatório' });
   }
 
   try {
     const resultado = await pool.query(
-      `INSERT INTO marcacoes (utilizador_id, posto_id, data_marcacao, hora_marcacao, estado)
-       VALUES ($1, $2, $3, $4, 'pendente')
+      `INSERT INTO marcacoes (utilizador_id, posto_id, estado)
+       VALUES ($1, $2, 'pendente')
        RETURNING *`,
-      [id, posto_id, data_marcacao, hora_marcacao]
+      [id, posto_id]
     );
     return res.status(201).json(resultado.rows[0]);
   } catch (err) {
